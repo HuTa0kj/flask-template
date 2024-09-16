@@ -5,7 +5,7 @@ Enter the following command to quickly start.
 
 ```bash
 git clone git@github.com:HuTa0kj/flask-template.git
-cd template
+cd flask-template
 # start
 docker compose up -d
 # close
