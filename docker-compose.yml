@@ -3,19 +3,40 @@ services:
   web:
     build: .
     environment:
-      FLASK_ENV: development
+      FLASK_ENV: development  # 确保Flask在开发模式下运行
     volumes:
-      - .:/app/
+      - .:/app/  # 将代码挂载到容器中
     ports:
-      - "5000:5000"
+      - "5000:5000"  # 映射容器端口到主机
     depends_on:
       - mysql
-   
+      - redis
+
+  celery:
+    build: .
+    command: celery -A run.celery worker --loglevel=info
+    environment:
+      FLASK_ENV: development  # 确保Celery任务在Flask的开发环境下运行
+    depends_on:
+      - redis
+      - web  # 依赖web服务
+    volumes:
+      - .:/app  # 挂载代码目录
+
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: 123456  # MySQL root用户密码
+      MYSQL_USER: user  # MySQL 用户
+      MYSQL_PASSWORD: password  # MySQL 用户密码
+    ports:
+      - "3306:3306"  # 映射MySQL端口
     volumes:
-      - ./mysql-volume/mysql-data:/var/lib/mysql
+      - ./data/mysql-volume/mysql-data:/var/lib/mysql  # 持久化MySQL数据
+
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379:6379"  # 映射Redis端口
+    volumes:
+      - ./data/redis-volume/redis-data:/var/lib/redis  # 持久化Redis数据

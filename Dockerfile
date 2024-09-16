@@ -4,6 +4,8 @@ FROM python:3.9-slim
 # 设置工作目录
 WORKDIR /app
 
+ENV TZ=Asia/Shanghai
+
 # 将 requirements.txt 复制到容器内
 COPY requirements.txt /tmp/requirements.txt
 
