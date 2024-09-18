@@ -1,4 +1,5 @@
 class BaseConfig(object):
+    DEBUG = False
     SECRET_KEY = 'xxx'
     HOSTNAME = 'mysql'
     PORT = '3306'
@@ -13,5 +14,6 @@ class BaseConfig(object):
 
 
 class DevConfig(BaseConfig):
+    DEBUG = True
     ASSETS_DEBUG = True
     WTF_CSRF_ENABLED = False

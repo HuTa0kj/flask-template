@@ -2,8 +2,6 @@ version: '3.0'
 services:
   web:
     build: .
-    environment:
-      FLASK_ENV: development  # 确保Flask在开发模式下运行
     volumes:
       - .:/app/  # 将代码挂载到容器中
     ports:
@@ -15,8 +13,6 @@ services:
   celery:
     build: .
     command: celery -A run.celery worker --loglevel=info
-    environment:
-      FLASK_ENV: development  # 确保Celery任务在Flask的开发环境下运行
     depends_on:
       - redis
       - web  # 依赖web服务
