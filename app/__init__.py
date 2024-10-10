@@ -35,7 +35,8 @@ def make_celery(app):
     # 使用Flask应用的配置初始化Celery
     celery.conf.update(
         broker_url=app.config["CELERY_BROKER_URL"],
-        result_backend=app.config["CELERY_RESULT_BACKEND"]
+        result_backend=app.config["CELERY_RESULT_BACKEND"],
+        beat_schedule=app.config["CELERY_BEAT_SCHEDULE"]
     )
 
     class ContextTask(celery.Task):

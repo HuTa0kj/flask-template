@@ -19,6 +19,15 @@ services:
     volumes:
       - .:/app  # 挂载代码目录
 
+  celery-beat: # 添加 Celery Beat 服务
+    build: .
+    command: celery -A run.celery beat --loglevel=info  # 启动 Celery Beat
+    depends_on:
+      - redis
+      - web
+    volumes:
+      - .:/app
+
   mysql:
     image: mysql:5.7
     environment:
