@@ -39,6 +39,9 @@ def make_celery(app):
         beat_schedule=app.config["CELERY_BEAT_SCHEDULE"]
     )
 
+    # 自动发现任务
+    celery.autodiscover_tasks(['app.tasks'])
+
     class ContextTask(celery.Task):
         """为 Celery 任务提供 Flask 应用上下文"""
 

@@ -12,6 +12,7 @@ class BaseConfig(object):
     CELERY_BROKER_URL = f'redis://{REDIS_HOST}:6379/1',
     CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:6379/2'
 
+    broker_connection_retry_on_startup = True
     # celery 定时任务配置
     CELERY_BEAT_SCHEDULE = {
         'log-access-time-every-minute': {
