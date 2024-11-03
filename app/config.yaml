@@ -1,0 +1,14 @@
+# 配置信息
+SET:
+  DEBUG: False
+  DATABASE:
+    MYSQL:
+      HOSTNAME: "mysql"
+      PORT: "3306"
+      USERNAME: "root"
+      PASSWORD: "root"
+      DATABASE: "app"
+    REDIS:
+      HOST: "redis"
+      BROKER_ID: "1"
+      BACKEND_ID: "2"

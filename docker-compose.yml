@@ -12,7 +12,7 @@ services:
 
   celery:
     build: .
-    command: celery -A run.celery worker --loglevel=info
+    command: celery -A run.celery worker --loglevel=info --logfile=./log/celery.log
     depends_on:
       - redis
       - web  # 依赖web服务
@@ -31,9 +31,7 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: 123456  # MySQL root用户密码
-      MYSQL_USER: user  # MySQL 用户
-      MYSQL_PASSWORD: password  # MySQL 用户密码
+      MYSQL_ROOT_PASSWORD: root  # MySQL root用户密码
     ports:
       - "3306:3306"  # 映射MySQL端口
     volumes:
