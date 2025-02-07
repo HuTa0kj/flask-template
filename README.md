@@ -1,15 +1,20 @@
-# flask-template
-A simple flask template to quickly build web applications based on blueprints.
+## Flask Template
 
-Enter the following command to quickly start.
+快速构建一个 Flask 项目
 
 ```bash
-git clone git@github.com:HuTa0kj/flask-template.git
+git clone git@gitea.furina.org.cn:Fur1na/flask-template.git
 cd flask-template
-mkdir -p data/mysql-volume/mysql-data
+
 # start
 docker compose up -d
 # close
 docker compose down
+```
+
+访问
+
+```
+http://127.0.0.1:5000
 ```
 

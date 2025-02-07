@@ -3,6 +3,7 @@ from app.views.user.user import user
 from app.models import LoginUser
 from app.extensions import lm, db, celery
 from app.config import BaseConfig
+from app.api.user_select import user_info_select_api
 
 
 def create_app(config=BaseConfig):
@@ -36,7 +37,8 @@ def make_celery(app):
     celery.conf.update(
         broker_url=app.config["CELERY_BROKER_URL"],
         result_backend=app.config["CELERY_RESULT_BACKEND"],
-        beat_schedule=app.config["CELERY_BEAT_SCHEDULE"]
+        beat_schedule=app.config["CELERY_BEAT_SCHEDULE"],
+        broker_connection_retry_on_startup=True
     )
 
     # 自动发现任务
@@ -57,6 +59,7 @@ def make_celery(app):
 # 蓝图注册
 def register_blueprints(app):
     app.register_blueprint(user)
+    app.register_blueprint(user_info_select_api)
 
 
 @lm.user_loader

@@ -35,6 +35,7 @@ services:
     ports:
       - "3306:3306"  # 映射MySQL端口
     volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/mysql-volume/mysql-data:/var/lib/mysql  # 持久化MySQL数据
 
   redis:

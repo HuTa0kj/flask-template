@@ -5,3 +5,4 @@ data/*
 !data/readme/
 tmp/
 .DS_Store
+*.log
